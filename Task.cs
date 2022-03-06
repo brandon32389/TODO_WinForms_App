@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace TODO_WinForms_App
 {
-    class Task
+    public class Task
     {
         #region Fields
         private int id;
@@ -105,9 +102,14 @@ namespace TODO_WinForms_App
         #endregion
 
         #region Methods
-        public void GetTask()
+        public void AddTask(Task task)
         {
-            throw new NotImplementedException();
+            string path ="Tasks.csv";
+
+            using (StreamWriter sw = File.AppendText(path))
+            {
+                sw.WriteLine($"{task.name},{task.description},{task.status},{task.dueDate},{task.createdDate},{task.modifiedDate}");
+            }
         }
         #endregion
     }
